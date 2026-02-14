@@ -441,6 +441,9 @@ install_openclaw() {
     msg_info "Creating openclaw user"
     pct exec "$CT_ID" -- bash -c "
         useradd -r -m -s /bin/bash openclaw 2>/dev/null || true
+    # Give openclaw sudo for service management
+    pct exec "$CT_ID" -- bash -c "echo 'openclaw ALL=(ALL) NOPASSWD: /bin/systemctl * openclaw*' > /etc/sudoers.d/openclaw"
+    pct exec "$CT_ID" -- chmod 0440 /etc/sudoers.d/openclaw
         mkdir -p /home/openclaw/.openclaw/workspace
         chown -R openclaw:openclaw /home/openclaw
     "
