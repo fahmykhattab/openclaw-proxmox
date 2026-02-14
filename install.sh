@@ -28,6 +28,7 @@ var_dashboard="yes"; var_dashboard_port="3333"
 var_ollama="no"; var_ollama_url="http://localhost:11434"
 var_domain=""
 CT_ID=""; HN=""; STORAGE=""
+DASHBOARD_PASS=""
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 msg_info() { echo -ne " ${HOLD} ${INFO} ${YW}${1}...${CL}"; }
@@ -35,7 +36,7 @@ msg_ok()   { echo -e "${BFR} ${CM} ${GN}${1}${CL}"; }
 msg_error(){ echo -e "${BFR} ${CROSS} ${RD}${1}${CL}"; }
 
 header() {
-    clear
+    clear 2>/dev/null || true
     cat << "EOF"
    ____                   _____ _               
   / __ \                 / ____| |              
