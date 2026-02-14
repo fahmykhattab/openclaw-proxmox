@@ -9,6 +9,7 @@
 # ==============================================================================
 
 set -euo pipefail
+trap 'echo "ERROR at line $LINENO: command \"$BASH_COMMAND\" failed with exit code $?"' ERR
 
 # ─── Colors & Formatting ─────────────────────────────────────────────────────
 BL="\e[36m"; GN="\e[32m"; RD="\e[31m"; YW="\e[33m"; DIM="\e[2m"; CL="\e[0m"
@@ -60,10 +61,10 @@ check_proxmox() {
     msg_ok "Proxmox VE detected: $(pveversion | cut -d'/' -f2)"
 }
 
-next_id() { pvesh get /cluster/nextid 2>/dev/null || echo 100; }
+next_id() { local id; id=$(pvesh get /cluster/nextid 2>/dev/null) || id=100; echo "$id"; }
 
 select_storage() {
-    local storages; storages=$(pvesm status -content rootdir 2>/dev/null | awk 'NR>1 {print $1}')
+    local storages; storages=$(pvesm status -content rootdir 2>/dev/null | awk 'NR>1 {print $1}' || true)
     [[ -z "$storages" ]] && { msg_error "No rootdir storage found."; exit 1; }
     local count; count=$(echo "$storages" | wc -l)
     if [[ $count -eq 1 ]]; then
