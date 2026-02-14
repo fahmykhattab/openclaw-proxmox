@@ -463,7 +463,7 @@ install_openclaw() {
     fi
 
     local sandbox_cfg="" controlui_cfg=""
-    [[ "$var_docker" == "yes" ]] && sandbox_cfg=', "sandbox": {"enabled": true, "provider": "docker"}'
+    [[ "$var_docker" == "yes" ]] && sandbox_cfg=', "sandbox": {"mode": "all"}'
     [[ "$var_webui" == "yes" ]] && controlui_cfg=', "controlUi": {"enabled": true, "allowedOrigins": ["*"]}'
 
     pct exec "$CT_ID" -- su - openclaw -c "cat > /home/openclaw/.openclaw/openclaw.json << 'OCEOF'
