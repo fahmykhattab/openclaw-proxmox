@@ -27,7 +27,7 @@ var_gate=""; var_dns=""; var_mac=""; var_vlan=""
 var_ssh="no"; var_docker="yes"
 var_webui="yes"; var_webui_type="nginx"; var_webui_port="80"
 var_dashboard="yes"; var_dashboard_port="3333"
-var_ollama="no"; var_ollama_url="http://localhost:11434"
+var_ollama="no"; var_ollama_url="http://192.168.178.38:11434"
 var_domain=""
 CT_ID=""; HN=""; STORAGE=""
 DASHBOARD_PASS=""
@@ -274,7 +274,7 @@ install_ollama() {
         done
     ' || { msg_error "Ollama installation failed"; return 1; }
     msg_ok "Ollama installed"
-    var_ollama_url="http://localhost:11434"
+    var_ollama_url="http://192.168.178.38:11434"
 }
 
 # ─── Install Nginx ───────────────────────────────────────────────────────────
