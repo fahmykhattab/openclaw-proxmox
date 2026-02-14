@@ -31,7 +31,6 @@ var_ollama="no"; var_ollama_url="http://localhost:11434"
 var_domain=""
 CT_ID=""; HN=""; STORAGE=""
 DASHBOARD_PASS=""
-AUTH_TOKEN=""
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────
 msg_info() { echo -ne " ${HOLD} ${INFO} ${YW}${1}...${CL}"; }
@@ -160,8 +159,6 @@ configure() {
         [[ "$var_disk" -lt 16 ]] && { echo -e "  ${YW}Warning: Ollama models need space. Bumping disk to 16 GB.${CL}"; var_disk=16; }
     fi
 
-    # Generate auth token
-    AUTH_TOKEN=$(openssl rand -hex 32)
 
     # Summary
     echo -e "\n${BL}--- Configuration Summary ---${CL}"
@@ -489,9 +486,6 @@ print(json.dumps(models))
         # Write config with heredoc, injecting variables
         pct exec "$CT_ID" -- bash -c "cat > /home/openclaw/.openclaw/openclaw.json << CFGEOF
 {
-  \"auth\": {
-    \"token\": \"${AUTH_TOKEN}\"
-  },
   \"gateway\": {
     \"port\": 18789,
     \"mode\": \"local\",
@@ -524,9 +518,6 @@ chown openclaw:openclaw /home/openclaw/.openclaw/openclaw.json"
         # Anthropic/default config
         pct exec "$CT_ID" -- bash -c "cat > /home/openclaw/.openclaw/openclaw.json << CFGEOF
 {
-  \"auth\": {
-    \"token\": \"${AUTH_TOKEN}\"
-  },
   \"gateway\": {
     \"port\": 18789,
     \"mode\": \"local\",
@@ -626,8 +617,6 @@ show_completion() {
     fi
 
     echo ""
-    echo -e "  ${YW}Auth Token: ${AUTH_TOKEN}${CL}"
-    echo -e "  ${DIM}(saved in openclaw.json)${CL}"
 
     echo ""
     echo -e "  ${YW}-- Next Steps --${CL}"
