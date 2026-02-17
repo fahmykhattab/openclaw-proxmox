@@ -5,7 +5,7 @@
 # Deploy a full AI-powered document management stack with Docker Compose.
 #
 # Usage:
-#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/proxmox-openclaw/main/paperless-ai-stack.sh)"
+#   bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/openclaw-proxmox/master/paperless-ai-stack.sh)"
 #
 # What it deploys:
 #   - Paperless-ngx    (Document Management)    → port 8000

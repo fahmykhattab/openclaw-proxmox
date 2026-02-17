@@ -7,7 +7,7 @@ Automated deployment scripts for Proxmox VE homelab setups.
 **One-liner** to deploy a full AI-powered Document Management System:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/proxmox-openclaw/main/paperless-ai-stack.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/openclaw-proxmox/master/paperless-ai-stack.sh)"
 ```
 
 ### What it deploys
@@ -54,7 +54,7 @@ Credentials are saved to `.credentials` in the install directory.
 Automated OpenClaw deployment in a Proxmox LXC container:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/proxmox-openclaw/main/install.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/fahmykhattab/openclaw-proxmox/master/install.sh)"
 ```
 
 ---
